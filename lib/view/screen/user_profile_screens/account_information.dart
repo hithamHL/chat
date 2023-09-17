@@ -5,6 +5,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -108,6 +109,7 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
     sharedPreferences = await SharedPreferences.getInstance();
    await sharedPreferences!.setString("name", f_nameController.text.trim());
    await sharedPreferences!.setString("phone","0${phoneController.text.trim()}");
+   Fluttertoast.showToast(msg: "Account info has been Update");
     }
 
 

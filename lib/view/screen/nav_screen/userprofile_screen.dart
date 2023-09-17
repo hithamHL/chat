@@ -47,6 +47,10 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
 
       });
     }
+    setState(() {
+
+    });
+
   }
   void  _getFromGallery()async{
 
@@ -64,6 +68,9 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
        saveDataToFirestore();
      });
    }
+    setState(() {
+
+    });
 
   }
 
@@ -76,6 +83,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
     // save data locally
     sharedPreferences=await SharedPreferences.getInstance();
     await sharedPreferences!.setString("photoUrl", imageUrl!);
+    Fluttertoast.showToast(msg: "The Image Update in Firebase");
 
 
   }
@@ -138,6 +146,13 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    imageUrl=sharedPreferences!.getString("photoUrl");
+    print(imageUrl);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
@@ -151,11 +166,11 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                 CircleAvatar(
                   radius: 65,
                   backgroundColor: mainColor,
-                  child: imageFile == null
+                  child: imageUrl == null||imageUrl==""
                       ? ClipOval(child: Image.asset("images/onboard1.png",))
                       : ClipOval(
-                    child: Image.file(
-                      imageFile!,
+                    child: Image.network(
+                      imageUrl!,
                       width: 130, // You can adjust the width and height as needed
                       height: 130,
                       fit: BoxFit.cover,

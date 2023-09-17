@@ -48,12 +48,13 @@ class _NewLoginScreenState extends State<NewLoginScreen> {
   }
   formValidation(){
     if(idController.text.isNotEmpty &&
-        idController.text.length==9&&
+        (idController.text.length==9||idController.text.length==7)&&
         passwordController.text.isNotEmpty){
 
       //login
+      print(idController.text.length);
+      idController.text.length==9?loginNow():loginAsDoctor();
 
-       loginNow();
 
       //  hideLoadingDialog(context);
     }
@@ -67,7 +68,42 @@ class _NewLoginScreenState extends State<NewLoginScreen> {
           });
     }
   }
+  Future<void> loginAsDoctor() async {
+    showDialog(
+      context: context,
+      builder: (c) {
+        return LoadingDialog(
+          message: "Wait...",
+        );
+      },
+    );
 
+    User? currentUser;
+
+    await firebaseAuth.signInWithEmailAndPassword(
+      // email: idController==9?"${idController.text.trim()}@gmail.com":"${idController.text.trim()}@doctor.com",
+      email: "${idController.text.trim()}@doctor.com",
+      password: passwordController.text,
+    ).then((auth) async {
+      currentUser = auth.user;
+
+
+    }).catchError((error) {
+      Navigator.pop(context);
+      showDialog(
+        context: context,
+        builder: (c) {
+          return ErrorDialog(
+            message: "خطأ" + error.message.toString(),
+          );
+        },
+      );
+    });
+
+    if (currentUser != null) {
+      readDataAndSetDataLocally(currentUser!);
+    }
+  }
   Future<void> loginNow() async {
     showDialog(
       context: context,
@@ -81,6 +117,7 @@ class _NewLoginScreenState extends State<NewLoginScreen> {
     User? currentUser;
 
     await firebaseAuth.signInWithEmailAndPassword(
+      // email: idController==9?"${idController.text.trim()}@gmail.com":"${idController.text.trim()}@doctor.com",
       email: "${idController.text.trim()}@gmail.com",
       password: passwordController.text,
     ).then((auth) async {
@@ -110,14 +147,38 @@ class _NewLoginScreenState extends State<NewLoginScreen> {
         .collection("users").doc(currentUser.uid)
         .get().then((snapshot)async{
       if(snapshot.exists){
-        await sharedPreferences!.setString("uid", currentUser.uid);
-        await sharedPreferences!.setString("email", snapshot.data()!["email"]);
-        await sharedPreferences!.setString("name", snapshot.data()!["f_name"]);
-        await sharedPreferences!.setString("photoUrl", snapshot.data()!["photoUrl"]);
-        await sharedPreferences!.setString("password", snapshot.data()!["password"]);
-        await sharedPreferences!.setString("token", snapshot.data()!["token"]);
-       Navigator.pop(context);
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (c)=>MainScreen()));
+        if(idController.text.length==7&&argumentValue==false){
+          await sharedPreferences!.setString("uid", currentUser.uid);
+          await sharedPreferences!.setString("email", snapshot.data()!["email"]);
+          await sharedPreferences!.setString("name", snapshot.data()!["f_name"]);
+          await sharedPreferences!.setString("photoUrl", snapshot.data()!["photoUrl"]);
+          await sharedPreferences!.setString("password", snapshot.data()!["password"]);
+       //   await sharedPreferences!.setString("token", snapshot.data()!["token"]);
+          await sharedPreferences!.setBool("doctor", true);
+          Navigator.pop(context);
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (c)=>MainScreen()));
+
+        }else if(idController.text.length==9&&argumentValue==true){
+          await sharedPreferences!.setString("uid", currentUser.uid);
+          await sharedPreferences!.setString("email", snapshot.data()!["email"]);
+          await sharedPreferences!.setString("name", snapshot.data()!["f_name"]);
+          await sharedPreferences!.setString("photoUrl", snapshot.data()!["photoUrl"]);
+          await sharedPreferences!.setString("password", snapshot.data()!["password"]);
+          await sharedPreferences!.setString("token", snapshot.data()!["token"]);
+          Navigator.pop(context);
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (c)=>MainScreen()));
+
+        }else{
+          Navigator.pop(context);
+         // Navigator.pushReplacement(context, MaterialPageRoute(builder: (c)=>TypeLoginScreen()));
+          showDialog(
+              context: context,
+              builder: (c){
+                return ErrorDialog(
+                  message: "لا يمكنك التسجيل هنا",
+                );
+              });
+        }
 
       }
       else{
