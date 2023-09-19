@@ -15,6 +15,7 @@ import 'package:medicen_app/view/screen/categore_lists/nutritional_supplements.d
 import 'package:medicen_app/view/screen/categore_lists/severe_toxins_list.dart';
 import 'package:medicen_app/view/screen/categore_lists/skin_car_list.dart';
 import 'package:medicen_app/view/screen/categore_lists/view_all_category.dart';
+import 'package:medicen_app/view/screen/confirmation_order_screen.dart';
 import 'package:medicen_app/view/screen/main_screen.dart';
 import 'package:medicen_app/view/screen/more__all_screen/about_us_screen.dart';
 import 'package:medicen_app/view/screen/more__all_screen/discounts_screen.dart';
@@ -219,6 +220,10 @@ static const splashScreen=Routes.splashScreen;
         name: Routes.notificationScreen,
         page: ()=>NotificationScreen()),
 
+    GetPage(
+        name: Routes.confirmationOrderScreen,
+        page: ()=>ConfirmationOrderScreen()),
+
   ];
 }
 
@@ -263,4 +268,5 @@ class Routes{
   static const ordersScreen='/ordersScreen';
   static const accountInfoScreen='/accountInfoScreen';
   static const notificationScreen='/notificationScreen';
+  static const confirmationOrderScreen='/confirmationOrderScreen';
 }

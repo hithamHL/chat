@@ -55,6 +55,7 @@ dependencies:
   animated_bottom_navigation_bar: ^1.2.0
   art_sweetalert: ^0.0.5
   fluttertoast: ^8.2.2
+  url_launcher: ^6.1.14
 
 
 dev_dependencies:
