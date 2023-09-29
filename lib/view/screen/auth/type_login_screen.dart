@@ -37,13 +37,13 @@ class _TypeLoginScreenState extends State<TypeLoginScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("No Internet Connection"),
-          content: Text("Please check your internet connection."),
+          title: Text("No Internet Connection".tr),
+          content: Text("Please check your internet connection.".tr),
           actions: [
             TextButton(
               onPressed: () async {
 
-                Navigator.pop(context,'Cancel'); // Close the dialog
+                Navigator.pop(context,'Cancel'.tr); // Close the dialog
                 setState(() {
                   isAlerSet=false;
                 });
@@ -55,7 +55,7 @@ class _TypeLoginScreenState extends State<TypeLoginScreen> {
                   });
                 }
               },
-              child: Text("OK"),
+              child: Text("OK".tr),
             ),
           ],
         );
@@ -84,9 +84,9 @@ class _TypeLoginScreenState extends State<TypeLoginScreen> {
             SizedBox(height: 120,),
 
             Padding(
-              padding: const EdgeInsets.only(left: 8.0),
+              padding: const EdgeInsets.only(left: 8.0,right: 8.0),
               child: CustomTextWidget(
-                  text: "Welcome Back !",
+                  text: "Welcome Back !".tr,
                   textColor: Colors.white,
                   fontSize: 24,
                   fontWeight: FontWeight.bold),
@@ -94,9 +94,9 @@ class _TypeLoginScreenState extends State<TypeLoginScreen> {
 
             SizedBox(height: 12,),
             Padding(
-              padding: const EdgeInsets.only(left: 8.0),
+              padding: const EdgeInsets.only(left: 8.0,right: 8.0),
               child: CustomTextWidget(
-                  text: "Log in to continue",
+                  text: "Log in to continue".tr,
                   textColor: Colors.white,
                   fontSize: 22,
                   fontWeight: FontWeight.normal),
@@ -134,7 +134,7 @@ class _TypeLoginScreenState extends State<TypeLoginScreen> {
                         SizedBox(height: 20),
 
                         CustomTextWidget(
-                            text: "Log in as",
+                            text: "Log in as".tr,
                             textColor: mainColor,
                             fontSize: 22,
                             fontWeight: FontWeight.normal),
@@ -157,7 +157,7 @@ class _TypeLoginScreenState extends State<TypeLoginScreen> {
 
                             },
                             child: Text(
-                                "pharmaceutical"
+                                "pharmaceutical".tr
                             ),
                             style: ElevatedButton.styleFrom(
 
@@ -181,7 +181,7 @@ class _TypeLoginScreenState extends State<TypeLoginScreen> {
                               }
                             },
                             child: Text(
-                              "User",
+                              "User".tr,
                               style: TextStyle(
                                 color: mainColor,
                               ),

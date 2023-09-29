@@ -118,12 +118,12 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("No Internet Connection"),
-          content: Text("Please check your internet connection."),
+          title: Text("No Internet Connection".tr),
+          content: Text("Please check your internet connection.".tr),
           actions: [
             TextButton(
               onPressed: () async {
-                Navigator.pop(context, 'Cancel'); // Close the dialog
+                Navigator.pop(context, 'Cancel'.tr); // Close the dialog
                 setState(() {
                   isAlerSet = false;
                 });
@@ -136,7 +136,7 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
                   });
                 }
               },
-              child: Text("OK"),
+              child: Text("OK".tr),
             ),
           ],
         );
@@ -173,7 +173,7 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
               },
             ),
             title: Text(
-              "Account Information",
+              "Account Information".tr,
               style: TextStyle(color: Colors.black, fontSize: 16),
             ),
           ),
@@ -196,7 +196,7 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
                                   padding:
                                   const EdgeInsets.only(left: 8.0, right: 8),
                                   child: CustomTextWidget(
-                                      text: "First Name",
+                                      text: "First Name".tr,
                                       textColor: Colors.black,
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold),
@@ -207,7 +207,7 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
                                 CustomStyledTextField(
                                     keyboardType: TextInputType.text,
                                     controller: f_nameController,
-                                    hintText: "Enter f-Name",
+                                    hintText: "Enter f-Name".tr,
                                     prefixSvgPath: "images/user.svg"),
                               ],
                             ),
@@ -223,7 +223,7 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
                                   padding:
                                   const EdgeInsets.only(left: 8.0, right: 8),
                                   child: CustomTextWidget(
-                                      text: "Last Name",
+                                      text: "Last Name".tr,
                                       textColor: Colors.black,
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold),
@@ -234,7 +234,7 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
                                 CustomStyledTextField(
                                     keyboardType: TextInputType.text,
                                     controller: l_nameController,
-                                    hintText: "  Enter l-Name",
+                                    hintText: "  Enter l-Name".tr,
                                     prefixSvgPath: ""),
                               ],
                             ),
@@ -248,7 +248,7 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
                       Padding(
                         padding: const EdgeInsets.only(left: 8.0, right: 8),
                         child: CustomTextWidget(
-                            text: "Phone Number",
+                            text: "Phone Number".tr,
                             textColor: Colors.black,
                             fontSize: 18,
                             fontWeight: FontWeight.bold),
@@ -328,7 +328,7 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
                             }
                             formValidation();
                           },
-                          child: Text("Update"),
+                          child: Text("Update".tr),
                           style: ElevatedButton.styleFrom(
                             primary:
                             mainColor, // Set the button color to your desired color

@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:art_sweetalert/art_sweetalert.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
@@ -13,7 +12,6 @@ import 'package:medicen_app/view/widget/custom_text.dart';
 import 'package:medicen_app/view/widget/custome_styled_text_filde.dart';
 import 'package:medicen_app/view/widget/radio.dart';
 import 'package:url_launcher/url_launcher_string.dart';
-
 import '../../utils/global.dart';
 import '../../utils/theme.dart';
 
@@ -82,7 +80,6 @@ class _ConfirmationOrderScreenState extends State<ConfirmationOrderScreen> {
   RadioValue2 selectedValue2 = RadioValue2.option1;
   @override
   void initState() {
-    // TODO: implement initState
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: Color(0xffFFFAEB),
     ));

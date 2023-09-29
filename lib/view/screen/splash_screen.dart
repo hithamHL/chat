@@ -112,4 +112,11 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
       )
     );
   }
+
+  @override
+  void dispose() {
+    _animationController?.dispose();
+    super.dispose();
+
+  }
 }

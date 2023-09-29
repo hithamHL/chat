@@ -44,7 +44,7 @@ class _AboutAusScreenState extends State<AboutAusScreen> {
               },
             ),
             title: Text(
-              "About App",
+              "About App".tr,
               style: TextStyle(color: Colors.black, fontSize: 16),
             ),
           ),
@@ -54,14 +54,14 @@ class _AboutAusScreenState extends State<AboutAusScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  "Welcome to our pharmacy app, where we offer a wide range of medical and beauty supplies for all ages, along with continuous communication between the pharmacist and the customer.",
+                  "Welcome to our pharmacy app, where we offer a wide range of medical and beauty supplies for all ages, along with continuous communication between the pharmacist and the customer.".tr,
                   style: TextStyle(
                     fontSize: 16,
                   ),
                 ),
                 SizedBox(height: 16.0),
                 Text(
-                  "Features of Our App:",
+                  "Features of Our App:".tr,
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -69,38 +69,38 @@ class _AboutAusScreenState extends State<AboutAusScreen> {
                 ),
                 SizedBox(height: 8.0),
                 Text(
-                  "• Browse and purchase your favorite medical and beauty supplies with ease from anywhere, at any time.",
+                  "• Browse and purchase your favorite medical and beauty supplies with ease from anywhere, at any time.".tr,
                   style: TextStyle(
                     fontSize: 16,
                   ),
                 ),
                 Text(
-                  "• Communicate with our professional pharmacy team through the app to get the necessary health advice and consultations.",
+                  "• Communicate with our professional pharmacy team through the app to get the necessary health advice and consultations.".tr,
                   style: TextStyle(
                     fontSize: 16,
                   ),
                 ),
                 Text(
-                  "• Receive notifications and updates about our exclusive offers and discounts on health and beauty products.",
+                  "• Receive notifications and updates about our exclusive offers and discounts on health and beauty products.".tr,
                   style: TextStyle(
                     fontSize: 16,
                   ),
                 ),
                 Text(
-                  "• Browse a diverse range of products that cater to all family needs, including children and seniors.",
+                  "• Browse a diverse range of products that cater to all family needs, including children and seniors.".tr,
                   style: TextStyle(
                     fontSize: 16,
                   ),
                 ),
                 Text(
-                  "• Enjoy a convenient delivery service that makes obtaining your products easy and hassle-free.",
+                  "• Enjoy a convenient delivery service that makes obtaining your products easy and hassle-free.".tr,
                   style: TextStyle(
                     fontSize: 16,
                   ),
                 ),
                 SizedBox(height: 16.0),
                 Text(
-                  "Our app is committed to providing high-quality service and trusted products to help you take care of your health and beauty. Feel free to try it out and enjoy its full benefits for your health and beauty needs with ease and convenience.",
+                  "Our app is committed to providing high-quality service and trusted products to help you take care of your health and beauty. Feel free to try it out and enjoy its full benefits for your health and beauty needs with ease and convenience.".tr,
                   style: TextStyle(
                     fontSize: 16,
                   ),

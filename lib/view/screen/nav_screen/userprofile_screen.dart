@@ -96,7 +96,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
         builder: (context){
           return AlertDialog(
 
-            title: Text("Please Choose an Option "),
+            title: Text("Please Choose an Option ".tr),
             content: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -112,7 +112,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                         child: Icon(Icons.camera,color: mainColor,),
 
                       ),
-                      Text("Camera",style: TextStyle(color: mainColor),)
+                      Text("Camera".tr,style: TextStyle(color: mainColor),)
                     ],
                   ),
                 ),
@@ -128,7 +128,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                         child: Icon(Icons.image,color: mainColor,),
 
                       ),
-                      Text("Gallery",style: TextStyle(color: mainColor),)
+                      Text("Gallery".tr,style: TextStyle(color: mainColor),)
                     ],
                   ),
                 ),
@@ -137,10 +137,20 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
           );
         });
   }
+  String? uid= sharedPreferences!.getString("uid");
 
-  clear_Image(){
+  clear_Image()async{
+   imageUrl="";
+    FirebaseFirestore.instance.collection("users").doc(uid).update({
+      "photoUrl":"",
+
+    });
+    sharedPreferences=await SharedPreferences.getInstance();
+    await sharedPreferences!.setString("photoUrl", "");
+    Fluttertoast.showToast(msg: "The Image has been deleted");
+
     setState(() {
-      imageFile = null;
+
     });
 
   }
@@ -166,7 +176,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                 CircleAvatar(
                   radius: 65,
                   backgroundColor: mainColor,
-                  child: imageUrl == null||imageUrl==""
+                  child: imageUrl == ""||imageUrl==null
                       ? ClipOval(child: Image.asset("images/onboard1.png",))
                       : ClipOval(
                     child: Image.network(
@@ -196,7 +206,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                            borderRadius: BorderRadius.circular(10),
                          ),
 
-                         child: Center(child: Text("Update",style: TextStyle(fontWeight: FontWeight.bold),))),
+                         child: Center(child: Text("Update".tr,style: TextStyle(fontWeight: FontWeight.bold),))),
                    ),
                       SizedBox(width: 5,),
                    InkWell(
@@ -206,16 +216,17 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                          artDialogArgs: ArtDialogArgs(
                              type: ArtSweetAlertType.question,
 
-                             title: "Delete Image",
-                             text: "Do you want to delete this image?",
+                             title: "Delete Image".tr,
+                             text: "Do you want to delete this image?".tr,
                              onCancel: (){
                                Navigator.of(context, rootNavigator: true).pop();
                              },
-                             cancelButtonText: "Cancel",
+                             cancelButtonText: "Cancel".tr,
                              showCancelBtn: true,
-                             confirmButtonText: "Ok",
+                             confirmButtonText: "Ok".tr,
                              onConfirm: (){
                                clear_Image();
+
                                Navigator.of(context, rootNavigator: true).pop();
                              },
                              confirmButtonColor: mainColor
@@ -259,7 +270,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                       borderRadius: BorderRadius.only(topLeft: Radius.circular(20),topRight:Radius.circular(20) )
                     ),
                     child: ListTile(
-                      title: Text("Account Information"),
+                      title: Text("Account Information".tr),
                       tileColor: mainColor2,
                       leading: SvgPicture.asset("images/user2.svg"),
                     ),
@@ -281,7 +292,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                       ),
                     ),
                     child: ListTile(
-                      title: Text("Order"),
+                      title: Text("Order".tr),
                       tileColor: mainColor2,
                       leading: SvgPicture.asset("images/order.svg"),
                     ),
@@ -303,7 +314,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                       ),
                     ),
                     child: ListTile(
-                      title: Text("Address"),
+                      title: Text("Address".tr),
                       tileColor: mainColor2,
                       leading: SvgPicture.asset("images/location.svg"),
                     ),
@@ -326,7 +337,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                       ),
                     ),
                     child: ListTile(
-                      title: Text("Setting"),
+                      title: Text("Setting".tr),
                       tileColor: mainColor2,
                       leading: SvgPicture.asset("images/setting.svg"),
                     ),
@@ -342,14 +353,14 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                         context: context,
                         artDialogArgs: ArtDialogArgs(
                             type: ArtSweetAlertType.question,
-                            title: "Log Out Form App",
-                            text: "Do you want to log out?",
+                            title: "Log Out Form App".tr,
+                            text: "Do you want to log out?".tr,
                           onCancel: (){
                             Navigator.of(context, rootNavigator: true).pop();
                           },
-                          cancelButtonText: "Cancel",
+                          cancelButtonText: "Cancel".tr,
                           showCancelBtn: true,
-                          confirmButtonText: "Ok",
+                          confirmButtonText: "Ok".tr,
                           onConfirm: (){
                             Navigator.of(context, rootNavigator: true).pop();
                           },
@@ -373,7 +384,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
 
                     ),
                     child: ListTile(
-                      title: Text("Log out"),
+                      title: Text("Log out".tr),
                       tileColor: mainColor2,
                       leading: SvgPicture.asset("images/logout.svg"),
                     ),

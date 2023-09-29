@@ -45,13 +45,13 @@ class _AddressScreenState extends State<AddressScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("No Internet Connection"),
-          content: Text("Please check your internet connection."),
+          title: Text("No Internet Connection".tr),
+          content: Text("Please check your internet connection.".tr),
           actions: [
             TextButton(
               onPressed: () async {
 
-                Navigator.pop(context,'Cancel'); // Close the dialog
+                Navigator.pop(context,'Cancel'.tr); // Close the dialog
                 setState(() {
                   isAlerSet=false;
                 });
@@ -63,7 +63,7 @@ class _AddressScreenState extends State<AddressScreen> {
                   });
                 }
               },
-              child: Text("OK"),
+              child: Text("OK".tr),
             ),
           ],
         );
@@ -112,7 +112,7 @@ class _AddressScreenState extends State<AddressScreen> {
               },
             ),
             title: Text(
-              "Address",
+              "Address".tr,
               style: TextStyle(color: Colors.black, fontSize: 16),
             ),
           ),
@@ -139,7 +139,7 @@ class _AddressScreenState extends State<AddressScreen> {
 
                         },
                         child: Text(
-                            "Add Address"
+                            "Add Address".tr
                         ),
                         style: ElevatedButton.styleFrom(
 
@@ -165,9 +165,9 @@ class _AddressScreenState extends State<AddressScreen> {
                           if (snapshot.connectionState == ConnectionState.waiting) {
                             return Center(child: CircularProgressIndicator());
                           } else if (snapshot.hasError) {
-                            return Center(child: Text("Error: ${snapshot.error}"));
+                            return Center(child: Text("Error: ${snapshot.error}".tr));
                           } else if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-                            return Center(child: Text("No addresses found."));
+                            return Center(child: Text("No addresses found".tr));
                           } else {
                             // Render the list of addresses
                             return ListView.builder(
@@ -215,18 +215,18 @@ class _AddressScreenState extends State<AddressScreen> {
                                       context: context,
                                       artDialogArgs: ArtDialogArgs(
                                           type: ArtSweetAlertType.question,
-                                          title: "Delete Address",
-                                          text: "Do you want to delete address?",
+                                          title: "Delete Address".tr,
+                                          text: "Do you want to delete address?".tr,
                                           onCancel: (){
                                             Navigator.of(context, rootNavigator: true).pop();
                                           },
-                                          cancelButtonText: "Cancel",
+                                          cancelButtonText: "Cancel".tr,
                                           showCancelBtn: true,
-                                          confirmButtonText: "Ok",
+                                          confirmButtonText: "Ok".tr,
                                           onConfirm: (){
                                             deleteAddress();
                                             Navigator.of(context, rootNavigator: true).pop();
-                                            Fluttertoast.showToast(msg: "the address has been deleted");
+                                            Fluttertoast.showToast(msg: "the address has been deleted".tr);
                                           },
                                           confirmButtonColor: mainColor
 
@@ -298,10 +298,10 @@ class _AddressScreenState extends State<AddressScreen> {
                                             child: InkWell(
                                               onTap: (){
                                                 updateStatus();
-                                                Fluttertoast.showToast(msg: "the address be default");
+                                                Fluttertoast.showToast(msg: "the address be default".tr);
                                               },
                                               child: Text(
-                                                "Default Address",
+                                                "Default Address".tr,
                                                 style: TextStyle(
                                                   fontSize: 12,
                                                   color: Colors.blue

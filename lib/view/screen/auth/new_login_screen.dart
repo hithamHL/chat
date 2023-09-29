@@ -63,7 +63,7 @@ class _NewLoginScreenState extends State<NewLoginScreen> {
           context: context,
           builder: (c){
             return ErrorDialog(
-              message: "check your Number ID and password",
+              message: "check your Number ID and password".tr,
             );
           });
     }
@@ -73,7 +73,7 @@ class _NewLoginScreenState extends State<NewLoginScreen> {
       context: context,
       builder: (c) {
         return LoadingDialog(
-          message: "Wait...",
+          message: "Wait...".tr,
         );
       },
     );
@@ -94,7 +94,7 @@ class _NewLoginScreenState extends State<NewLoginScreen> {
         context: context,
         builder: (c) {
           return ErrorDialog(
-            message: "خطأ" + error.message.toString(),
+            message: "Error:".tr + error.message.toString(),
           );
         },
       );
@@ -109,7 +109,7 @@ class _NewLoginScreenState extends State<NewLoginScreen> {
       context: context,
       builder: (c) {
         return LoadingDialog(
-          message: "Wait...",
+          message: "Wait...".tr,
         );
       },
     );
@@ -130,7 +130,7 @@ class _NewLoginScreenState extends State<NewLoginScreen> {
         context: context,
         builder: (c) {
           return ErrorDialog(
-            message: "خطأ" + error.message.toString(),
+            message: "Error:".tr + error.message.toString(),
           );
         },
       );
@@ -175,7 +175,7 @@ class _NewLoginScreenState extends State<NewLoginScreen> {
               context: context,
               builder: (c){
                 return ErrorDialog(
-                  message: "لا يمكنك التسجيل هنا",
+                  message: "You cannot register here".tr,
                 );
               });
         }
@@ -189,7 +189,7 @@ class _NewLoginScreenState extends State<NewLoginScreen> {
             context: context,
             builder: (c){
               return ErrorDialog(
-                message: "استخدم حساب فعال",
+                message: "Use an active account".tr,
               );
             });
 
@@ -207,13 +207,13 @@ class _NewLoginScreenState extends State<NewLoginScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("No Internet Connection"),
-          content: Text("Please check your internet connection."),
+          title: Text("No Internet Connection".tr),
+          content: Text("Please check your internet connection.".tr),
           actions: [
             TextButton(
               onPressed: () async {
 
-                Navigator.pop(context,'Cancel'); // Close the dialog
+                Navigator.pop(context,'Cancel'.tr); // Close the dialog
                 setState(() {
                   isAlerSet=false;
                 });
@@ -225,7 +225,7 @@ class _NewLoginScreenState extends State<NewLoginScreen> {
                   });
                 }
               },
-              child: Text("OK"),
+              child: Text("OK".tr),
             ),
           ],
         );
@@ -255,9 +255,9 @@ class _NewLoginScreenState extends State<NewLoginScreen> {
             SizedBox(height: 120,),
 
             Padding(
-              padding: const EdgeInsets.only(left: 8.0),
+              padding: const EdgeInsets.only(left: 8.0,right: 8.0),
               child: CustomTextWidget(
-                  text: "Welcome Back !",
+                  text: "Welcome Back !".tr,
                   textColor: Colors.white,
                   fontSize: 24,
                   fontWeight: FontWeight.bold),
@@ -265,9 +265,9 @@ class _NewLoginScreenState extends State<NewLoginScreen> {
 
             SizedBox(height: 12,),
             Padding(
-              padding: const EdgeInsets.only(left: 8.0),
+              padding: const EdgeInsets.only(left: 8.0,right: 8.0),
               child: CustomTextWidget(
-                  text: "Log in to continue",
+                  text: "Log in to continue".tr,
                   textColor: Colors.white,
                   fontSize: 22,
                   fontWeight: FontWeight.normal),
@@ -299,7 +299,7 @@ class _NewLoginScreenState extends State<NewLoginScreen> {
                           Padding(
                             padding: const EdgeInsets.only(left: 8.0,right: 8),
                             child: CustomTextWidget(
-                                text: "Enter Number",
+                                text: "Enter Number".tr,
                                 textColor: Colors.black,
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold),
@@ -310,7 +310,7 @@ class _NewLoginScreenState extends State<NewLoginScreen> {
 
                           CustomStyledTextField(
                               controller: idController,
-                              hintText: "Enter your Number ID",
+                              hintText: "Enter your Number ID".tr,
                               prefixSvgPath: "images/id_number.svg",
                           keyboardType: TextInputType.number,
                           ),
@@ -320,7 +320,7 @@ class _NewLoginScreenState extends State<NewLoginScreen> {
                           Padding(
                             padding: const EdgeInsets.only(left: 8.0,right: 8),
                             child: CustomTextWidget(
-                                text: "Password",
+                                text: "Password".tr,
                                 textColor: Colors.black,
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold),
@@ -339,7 +339,7 @@ class _NewLoginScreenState extends State<NewLoginScreen> {
                               style: TextStyle(color: Colors.black),
                               obscureText: isclick!, // Hide the entered password
                               decoration: InputDecoration(
-                                hintText: "Enter your password",
+                                hintText: "Enter your password".tr,
                                 hintStyle: TextStyle(color: Color(0xffcacaca)),
                                 prefixIcon: Padding(
                                   padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -370,7 +370,7 @@ class _NewLoginScreenState extends State<NewLoginScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Padding(
-                                padding: const EdgeInsets.only(left: 8.0),
+                                padding: const EdgeInsets.only(left: 8.0,right: 8),
                                 child: Row(
                                   children: [
                                     FilledRadio(
@@ -383,7 +383,7 @@ class _NewLoginScreenState extends State<NewLoginScreen> {
                                     ),
                                     SizedBox(width: 5,),
                                     CustomTextWidget(
-                                      text: "Remember Me",
+                                      text: "Remember Me".tr,
                                       textColor: Colors.black,
                                       fontSize: 14,
                                       fontWeight: FontWeight.normal,
@@ -400,7 +400,7 @@ class _NewLoginScreenState extends State<NewLoginScreen> {
                                   child: Padding(
                                     padding: const EdgeInsets.only(right: 8.0, left: 8),
                                     child: CustomTextWidget(
-                                      text: "Forgot Password?",
+                                      text: "Forgot Password?".tr,
                                       textColor: Colors.red,
                                       fontSize: 14,
                                       fontWeight: FontWeight.normal,
@@ -426,7 +426,7 @@ class _NewLoginScreenState extends State<NewLoginScreen> {
 
                               },
                               child: Text(
-                                  "Login"
+                                  "Sign In".tr
                               ),
                               style: ElevatedButton.styleFrom(
 
@@ -444,14 +444,14 @@ class _NewLoginScreenState extends State<NewLoginScreen> {
                             alignment: Alignment.center,
                             child: RichText(
                               text: TextSpan(
-                                text: "Don't have an account already? ",
+                                text: "Don't have an account already? ".tr,
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 14,
                                 ),
                                 children: [
                                   TextSpan(
-                                    text: "Sign up",
+                                    text: "Sign up".tr,
                                     style: TextStyle(
                                       color: Colors.green,
                                       fontSize: 14,

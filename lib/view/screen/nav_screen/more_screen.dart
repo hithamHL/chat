@@ -39,7 +39,7 @@ class _MoreScreenState extends State<MoreScreen> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                    "Hello, how can we help you?",
+                    "Hello, how can we help you?".tr,
                     style: TextStyle(
                       fontSize: 32,
                       fontWeight: FontWeight.w400,
@@ -70,7 +70,7 @@ class _MoreScreenState extends State<MoreScreen> {
                                   )),
 
                               Center(child: Text(
-                                  "About the app",
+                                  "About the app".tr,
                                   style: TextStyle(
                                     fontSize: 24,
                                     color: Colors.white,
@@ -99,7 +99,7 @@ class _MoreScreenState extends State<MoreScreen> {
                                   )),
 
                               Center(child: Text(
-                                  "privacy policy",
+                                  "privacy policy".tr,
                                   style: TextStyle(
                                     fontSize: 24,
                                     color: Colors.white,
@@ -148,7 +148,7 @@ class _MoreScreenState extends State<MoreScreen> {
 
                                 Center(
                                   child: Text(
-                                    "Usage policy",
+                                    "Usage policy".tr,
                                     style: TextStyle(
                                       fontSize: 24,
                                       color: Colors.white,

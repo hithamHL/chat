@@ -51,14 +51,14 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
           context: context,
           builder: (c){
             return ErrorDialog(
-              message: "check your Current Password",
+              message: "check your Current Password".tr,
             );
           });
     } else{
       showDialog(
           context: context,
           builder: (c){
-            return LoadingDialog(message: "wait...");
+            return LoadingDialog(message: "wait...".tr);
           }
       );
 await Future.delayed(Duration(milliseconds: 1000));
@@ -68,14 +68,14 @@ await Future.delayed(Duration(milliseconds: 1000));
         context: context,
         artDialogArgs: ArtDialogArgs(
             type: ArtSweetAlertType.success,
-            title: "Your account has been deleted",
+            title: "Your account has been deleted".tr,
             text: "We regret deleting your account, you can create a new account at any time.",
             onCancel: (){
               Navigator.of(context, rootNavigator: true).pop();
             },
 
             showCancelBtn: true,
-            confirmButtonText: "Ok",
+            confirmButtonText: "Ok".tr,
             onConfirm: (){
               updatePassword();
               Navigator.of(context, rootNavigator: true).pop();
@@ -104,10 +104,10 @@ await Future.delayed(Duration(milliseconds: 1000));
 
       await FirebaseFirestore.instance.collection("users").doc(uid).delete();
       await user!.delete();
-      await Fluttertoast.showToast(msg: "Password has been updated");
+      await Fluttertoast.showToast(msg: "Your account has been deleted".tr);
     } else {
       // Old password does not match
-      Fluttertoast.showToast(msg: "Incorrect old password");
+      Fluttertoast.showToast(msg: "Incorrect old password".tr);
     }
 
     hideLoadingDialog(context);
@@ -119,13 +119,13 @@ await Future.delayed(Duration(milliseconds: 1000));
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("No Internet Connection"),
-          content: Text("Please check your internet connection."),
+          title: Text("No Internet Connection".tr),
+          content: Text("Please check your internet connection.".tr),
           actions: [
             TextButton(
               onPressed: () async {
 
-                Navigator.pop(context,'Cancel'); // Close the dialog
+                Navigator.pop(context,'Cancel'.tr); // Close the dialog
                 setState(() {
                   isAlerSet=false;
                 });
@@ -137,7 +137,7 @@ await Future.delayed(Duration(milliseconds: 1000));
                   });
                 }
               },
-              child: Text("OK"),
+              child: Text("OK".tr),
             ),
           ],
         );
@@ -174,7 +174,7 @@ await Future.delayed(Duration(milliseconds: 1000));
               },
             ),
             title: Text(
-              "Delete Account",
+              "Delete Account".tr,
               style: TextStyle(color: Colors.black, fontSize: 16),
             ),
           ),
@@ -190,7 +190,7 @@ await Future.delayed(Duration(milliseconds: 1000));
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0,right: 8),
                       child: CustomTextWidget(
-                          text: "Current Password",
+                          text: "Current Password".tr,
                           textColor: Colors.black,
                           fontSize: 18,
                           fontWeight: FontWeight.bold),
@@ -208,7 +208,7 @@ await Future.delayed(Duration(milliseconds: 1000));
                         style: TextStyle(color: Colors.black),
                         obscureText: isclick1!, // Hide the entered password
                         decoration: InputDecoration(
-                          hintText: "Enter your password",
+                          hintText: "Enter your password".tr,
                           hintStyle: TextStyle(color: Color(0xffcacaca)),
                           prefixIcon: Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -252,7 +252,7 @@ await Future.delayed(Duration(milliseconds: 1000));
                           formValidation();
                         },
                         child: Text(
-                            "Delete"
+                            "Delete".tr
                         ),
                         style: ElevatedButton.styleFrom(
 

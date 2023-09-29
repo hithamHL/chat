@@ -47,7 +47,7 @@ class _SettingScreenState extends State<SettingScreen> {
               },
             ),
             title: Text(
-              "Setting",
+              "Setting".tr,
               style: TextStyle(color: Colors.black, fontSize: 16),
             ),
           ),
@@ -67,15 +67,14 @@ final storage = GetStorage();
                         context: context,
                         artDialogArgs: ArtDialogArgs(
                           type: ArtSweetAlertType.question,
-                          title: "Select Language",
-                          text: "Choose your preferred language:",
+                          title: "Select Language".tr,
+                          text: "Choose your preferred language:".tr,
                           onCancel: () {
                             Navigator.of(context, rootNavigator: true).pop();
                           },
-                          cancelButtonText: "Cancel",
-                          showCancelBtn: true,
-                          confirmButtonText: "Ok",
-                          confirmButtonColor: mainColor,
+
+                          confirmButtonText: "Cancel".tr,
+                          confirmButtonColor: Colors.grey,
                           customColumns: [
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -84,7 +83,7 @@ final storage = GetStorage();
                                   onTap: ()async {
                                     storage.write('language', 'ar');
                                     Navigator.of(context, rootNavigator: true).pop();
-                                     Fluttertoast.showToast(msg: "Will close the app in a moment...");
+                                     Fluttertoast.showToast(msg: "Will close the app in a moment...".tr);
                                     await Future.delayed(Duration(seconds: 2));
                                     SystemNavigator.pop();
 
@@ -99,6 +98,7 @@ final storage = GetStorage();
                                     ),
                                   ),
                                 ),
+                                
                                 GestureDetector(
                                   onTap: () async{
                                     storage.write('language', 'en');
@@ -126,7 +126,7 @@ final storage = GetStorage();
                       );
                     },
                     child: ListTile(
-                      title: Text("Change Language"),
+                      title: Text("Change Language".tr),
 
                       leading: SvgPicture.asset("images/translation.svg"),
                     trailing: Icon(Icons.arrow_forward_ios,size: 18,),
@@ -145,7 +145,7 @@ final storage = GetStorage();
 
                     },
                     child: ListTile(
-                      title: Text("Change Password"),
+                      title: Text("Change Password".tr),
                      // tileColor: mainColor2,
                       leading: SvgPicture.asset("images/ch_pass.svg"),
                       trailing: Icon(Icons.arrow_forward_ios,size: 18,),
@@ -164,14 +164,14 @@ final storage = GetStorage();
                         context: context,
                         artDialogArgs: ArtDialogArgs(
                             type: ArtSweetAlertType.question,
-                            title: "Are you sure ?",
-                            text: "If you delete your account, you will lose all of your registered information.",
+                            title: "Are you sure ?".tr,
+                            text: "If you delete your account, you will lose all of your registered information.".tr,
                             onCancel: (){
                               Navigator.of(context, rootNavigator: true).pop();
                             },
-                            cancelButtonText: "Cancel",
+                            cancelButtonText: "Cancel".tr,
                             showCancelBtn: true,
-                            confirmButtonText: "Ok",
+                            confirmButtonText: "Ok".tr,
                             onConfirm: (){
                               Navigator.of(context, rootNavigator: true).pop();
                               Get.toNamed(Routes.deleteAccountScreen);
@@ -187,7 +187,7 @@ final storage = GetStorage();
 
                     },
                     child: ListTile(
-                      title: Text("Delete Account"),
+                      title: Text("Delete Account".tr),
                       //tileColor: mainColor2,
                       leading: SvgPicture.asset("images/del.svg"),
                       trailing: Icon(Icons.arrow_forward_ios,size: 18,),
@@ -205,7 +205,7 @@ final storage = GetStorage();
 
                     },
                     child: ListTile(
-                      title: Text("Add Account"),
+                      title: Text("Add Account".tr),
                      // tileColor: mainColor2,
                       leading: SvgPicture.asset("images/add_lang.svg"),
                       trailing: Icon(Icons.arrow_forward_ios,size: 18,),

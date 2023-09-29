@@ -89,7 +89,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
           context: context,
           builder: (c){
             return ErrorDialog(
-              message: "check your Last name",
+              message: "check your Last name".tr,
             );
           });
     }
@@ -102,7 +102,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
           context: context,
           builder: (c){
             return ErrorDialog(
-              message: "check your email",
+              message: "check your email".tr,
             );
           });
 
@@ -112,7 +112,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
           context: context,
           builder: (c){
             return ErrorDialog(
-              message: "check your phone number",
+              message: "check your phone number".tr,
             );
           });
 
@@ -122,7 +122,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
           context: context,
           builder: (c){
             return ErrorDialog(
-              message: "check your City Input",
+              message: "check your City Input".tr,
             );
           });
     }
@@ -131,7 +131,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
           context: context,
           builder: (c){
             return ErrorDialog(
-              message: "check your Governorate Input",
+              message: "check your Governorate Input".tr,
             );
           });
     }
@@ -140,7 +140,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
           context: context,
           builder: (c){
             return ErrorDialog(
-              message: "check your Address Details",
+              message: "check your Address Details".tr,
             );
           });
     }
@@ -149,7 +149,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
       showDialog(
           context: context,
           builder: (c){
-            return LoadingDialog(message: "wait...");
+            return LoadingDialog(message: "wait...".tr);
           }
       );
       saveDataToFirestore();
@@ -165,12 +165,12 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("No Internet Connection"),
-          content: Text("Please check your internet connection."),
+          title: Text("No Internet Connection".tr),
+          content: Text("Please check your internet connection.".tr),
           actions: [
             TextButton(
               onPressed: () async {
-                Navigator.pop(context, 'Cancel'); // Close the dialog
+                Navigator.pop(context, 'Cancel'.tr); // Close the dialog
                 setState(() {
                   isAlerSet = false;
                 });
@@ -183,7 +183,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                   });
                 }
               },
-              child: Text("OK"),
+              child: Text("OK".tr),
             ),
           ],
         );
@@ -219,7 +219,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
               },
             ),
             title: Text(
-              "Add Address",
+              "Add Address".tr,
               style: TextStyle(color: Colors.black, fontSize: 16),
             ),
           ),
@@ -246,7 +246,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                                 padding:
                                 const EdgeInsets.only(left: 8.0, right: 8),
                                 child: CustomTextWidget(
-                                    text: "First Name",
+                                    text: "First Name".tr,
                                     textColor: Colors.black,
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold),
@@ -257,7 +257,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                               CustomStyledTextField(
                                   keyboardType: TextInputType.text,
                                   controller: f_nameController,
-                                  hintText: "Enter f-Name",
+                                  hintText: "Enter f-Name".tr,
                                   prefixSvgPath: "images/user.svg"),
                             ],
                           ),
@@ -273,7 +273,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                                 padding:
                                 const EdgeInsets.only(left: 8.0, right: 8),
                                 child: CustomTextWidget(
-                                    text: "Last Name",
+                                    text: "Last Name".tr,
                                     textColor: Colors.black,
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold),
@@ -284,7 +284,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                               CustomStyledTextField(
                                   keyboardType: TextInputType.text,
                                   controller: l_nameController,
-                                  hintText: "  Enter l-Name",
+                                  hintText: "  Enter l-Name".tr,
                                   prefixSvgPath: ""),
                             ],
                           ),
@@ -297,7 +297,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0, right: 8),
                       child: CustomTextWidget(
-                          text: "Email",
+                          text: "Email".tr,
                           textColor: Colors.black,
                           fontSize: 18,
                           fontWeight: FontWeight.bold),
@@ -307,7 +307,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                     ),
                     CustomStyledTextField(
                         controller: emailController,
-                        hintText: "Enter your Email Address",
+                        hintText: "Enter your Email Address".tr,
                         prefixSvgPath: "images/sms.svg"),
                     SizedBox(
                       height: 20,
@@ -315,7 +315,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0, right: 8),
                       child: CustomTextWidget(
-                          text: "Phone Number",
+                          text: "Phone Number".tr,
                           textColor: Colors.black,
                           fontSize: 18,
                           fontWeight: FontWeight.bold),
@@ -382,7 +382,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0, right: 8),
                       child: CustomTextWidget(
-                            text: "City",
+                            text: "City".tr,
                           textColor: Colors.black,
                           fontSize: 18,
                           fontWeight: FontWeight.bold),
@@ -397,16 +397,16 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                         items: [
 
                           DropdownMenuItem(
-                            child: Text('  City'),
+                            child: Text('  City'.tr),
                             value: 'Option 1',
                           ),
 
                           DropdownMenuItem(
-                            child: Text('  Gaza'),
+                            child: Text('  Gaza'.tr),
                             value: 'Gaza',
                           ),
                           DropdownMenuItem(
-                            child: Text('  West Bank'),
+                            child: Text('  West Bank'.tr),
                             value: 'West Bank',
                           ),
 
@@ -425,7 +425,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0, right: 8),
                       child: CustomTextWidget(
-                          text: "Governorate",
+                          text: "Governorate".tr,
                           textColor: Colors.black,
                           fontSize: 18,
                           fontWeight: FontWeight.bold),
@@ -439,69 +439,69 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                         value: _selectedOption2,
                         items: [
                           DropdownMenuItem(
-                            child: Text('  Governorate'),
+                            child: Text('  Governorate'.tr),
                             value: 'Option 1',
                           ),
                           DropdownMenuItem(
-                            child: Text('  Ramallah'),
+                            child: Text('  Ramallah'.tr),
                             value: 'Ramallah',
                           ),
                           DropdownMenuItem(
-                            child: Text('  Bethlehem'),
+                            child: Text('  Bethlehem'.tr),
                             value: 'Bethlehem',
                           ),DropdownMenuItem(
-                            child: Text('  Hebron'),
+                            child: Text('  Hebron'.tr),
                             value: 'Hebron',
                           ),DropdownMenuItem(
-                            child: Text('  Nablus'),
+                            child: Text('  Nablus'.tr),
                             value: 'Nablus',
                           ),DropdownMenuItem(
-                            child: Text('  Jericho'),
+                            child: Text('  Jericho'.tr),
                             value: 'Jericho',
                           ),DropdownMenuItem(
-                            child: Text('  Jenin'),
+                            child: Text('  Jenin'.tr),
                             value: 'Jenin',
                           ),DropdownMenuItem(
-                            child: Text('  Tulkarm'),
+                            child: Text('  Tulkarm'.tr),
                             value: 'Tulkarm',
                           ),DropdownMenuItem(
-                            child: Text('  Qalqilya'),
+                            child: Text('  Qalqilya'.tr),
                             value: 'Qalqilya',
                           ),DropdownMenuItem(
-                            child: Text('  Bethlehem'),
+                            child: Text('  Bethlehem'.tr),
                             value: 'Bethlehem',
                           ),DropdownMenuItem(
-                            child: Text('  Beit Jala'),
+                            child: Text('  Beit Jala'.tr),
                             value: 'Beit Jala',
                           ),DropdownMenuItem(
-                            child: Text('  Beit Sahour'),
+                            child: Text('  Beit Sahour'.tr),
                             value: 'Beit Sahour',
                           ),DropdownMenuItem(
-                            child: Text('  Salfit'),
+                            child: Text('  Salfit'.tr),
                             value: 'Salfit',
                           ),DropdownMenuItem(
-                            child: Text('  Abu Dis'),
+                            child: Text('  Abu Dis'.tr),
                             value: 'Abu Dis',
                           ),DropdownMenuItem(
-                            child: Text('  Gaza City'),
+                            child: Text('  Gaza City'.tr),
                             value: 'Gaza City',
                           ),DropdownMenuItem(
-                            child: Text('  Rafah'),
+                            child: Text('  Rafah'.tr),
                             value: 'Rafah',
                           ),DropdownMenuItem(
-                            child: Text('  Khan Yunis'),
+                            child: Text('  Khan Yunis'.tr),
                             value: 'Khan Yunis',
                           ),DropdownMenuItem(
-                            child: Text('  Beit Hanoun '),
+                            child: Text('  Beit Hanoun '.tr),
                             value: 'Beit Hanoun',
                           ),DropdownMenuItem(
-                            child: Text('  Deir al-Balah'),
+                            child: Text('  Deir al-Balah'.tr),
                             value: 'Deir al-Balah',
                           ),DropdownMenuItem(
-                            child: Text('  Jabalia'),
+                            child: Text('  Jabalia'.tr),
                             value: 'Jabalia',
                           ),DropdownMenuItem(
-                            child: Text('  Nuseirat'),
+                            child: Text('  Nuseirat'.tr),
                             value: 'Nuseirat',
                           ),
                         ],
@@ -520,7 +520,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0, right: 8),
                       child: CustomTextWidget(
-                          text: "Address details (street & Near place)",
+                          text: "Address details (street & Near place)".tr,
                           textColor: Colors.black,
                           fontSize: 18,
                           fontWeight: FontWeight.bold),
@@ -530,7 +530,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                     ),
                     CustomStyledTextField(
                         controller: addressController,
-                        hintText: "  Enter your Address details",
+                        hintText: "  Enter your Address details".tr,
                         prefixSvgPath: ""),
 
                     SizedBox(
@@ -550,7 +550,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                           }
                           formValidation();
                         },
-                        child: Text("Add Address"),
+                        child: Text("Add Address".tr),
                         style: ElevatedButton.styleFrom(
                           primary:
                           mainColor, // Set the button color to your desired color

@@ -44,7 +44,7 @@ class _UsagePolicyScreenState extends State<UsagePolicyScreen> {
               },
             ),
             title: Text(
-              "Usage Policy",
+              "Usage Policy".tr,
               style: TextStyle(color: Colors.black, fontSize: 16),
             ),
           ),
@@ -54,7 +54,7 @@ class _UsagePolicyScreenState extends State<UsagePolicyScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  "Usage Policy",
+                  "Usage Policy".tr,
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -62,14 +62,14 @@ class _UsagePolicyScreenState extends State<UsagePolicyScreen> {
                 ),
                 SizedBox(height: 16.0),
                 Text(
-                  "Welcome to our app's Usage Policy. This policy governs the use of our mobile application and outlines the terms and conditions you agree to when using our app. By using our app, you are agreeing to comply with and be bound by the following usage policy. Please read it carefully and ensure that you fully understand its contents.",
+                  "Welcome to our app's Usage Policy. This policy governs the use of our mobile application and outlines the terms and conditions you agree to when using our app. By using our app, you are agreeing to comply with and be bound by the following usage policy. Please read it carefully and ensure that you fully understand its contents.".tr,
                   style: TextStyle(
                     fontSize: 16,
                   ),
                 ),
                 SizedBox(height: 16.0),
                 Text(
-                  "1. Acceptance of Terms",
+                  "1. Acceptance of Terms".tr,
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
@@ -77,14 +77,14 @@ class _UsagePolicyScreenState extends State<UsagePolicyScreen> {
                 ),
                 SizedBox(height: 8.0),
                 Text(
-                  "By using our app, you acknowledge that you have read and agree to these terms and conditions. If you do not agree with any part of this policy, please do not use our app.",
+                  "By using our app, you acknowledge that you have read and agree to these terms and conditions. If you do not agree with any part of this policy, please do not use our app.".tr,
                   style: TextStyle(
                     fontSize: 16,
                   ),
                 ),
                 SizedBox(height: 16.0),
                 Text(
-                  "2. Appropriate Use",
+                  "2. Appropriate Use".tr,
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
@@ -92,7 +92,7 @@ class _UsagePolicyScreenState extends State<UsagePolicyScreen> {
                 ),
                 SizedBox(height: 8.0),
                 Text(
-                  "You agree to use our app only for lawful purposes and in a way that does not infringe on the rights of others, violate any laws, or interfere with the operation of the app. Unacceptable use may result in the termination of your access to the app.",
+                  "You agree to use our app only for lawful purposes and in a way that does not infringe on the rights of others, violate any laws, or interfere with the operation of the app. Unacceptable use may result in the termination of your access to the app.".tr,
                   style: TextStyle(
                     fontSize: 16,
                   ),

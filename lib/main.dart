@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
       locale: Locale(GetStorage().read<String>('language').toString()),
       translations: LocaliztionApp(),
       fallbackLocale: Locale(ene),
-      initialRoute: Routes.confirmationOrderScreen,
+      initialRoute: Routes.splashScreen,
       getPages: AppRoutes.routes,
     );
   }

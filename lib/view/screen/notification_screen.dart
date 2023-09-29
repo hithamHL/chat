@@ -42,7 +42,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
               },
             ),
             title: Text(
-              "Notification",
+              "Notification".tr,
               style: TextStyle(color: Colors.black, fontSize: 16),
             ),
           ),

@@ -1,5 +1,7 @@
-import 'package:get/route_manager.dart';
 
+
+
+import 'package:get/get_navigation/src/root/internacionalization.dart';
 
 import '../utils/my_string.dart';
 import 'ar.dart';

@@ -125,7 +125,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
 
                       SizedBox(height: 20,),
                       Text(
-                        "Enter the verification code",
+                        "Enter the verification code".tr,
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -133,7 +133,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                       ),
                       SizedBox(height: 12),
                       Text(
-                        "Please check your email to get the code for continuing.",
+                        "Please check your phone to get the code for continuing.".tr,
                         style: TextStyle(
                           fontSize: 14,
                         ),
@@ -200,7 +200,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                                     context: context,
                                     builder: (c) {
                                       return ErrorDialog(
-                                        message: "Check your Verify number",
+                                        message: "Check your Verify number".tr,
                                       );
                                     },
                                   );
@@ -217,7 +217,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
 
                           }
                               ,
-                          child: Text("Verify"),
+                          child: Text("Verify".tr),
                         ),
                       ),
                       SizedBox(height: 20),
@@ -235,7 +235,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                             }
                           },
                           child: Text(
-                            "Didn't you receive a code? Resend",
+                            "Didn't you receive a code? Resend".tr,
                             style: TextStyle(
                               color: _isResendEnabled ? Colors.blue : Colors.grey,
                             ),
@@ -247,7 +247,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                         alignment: Alignment.center,
 
                         child: Text(
-                          "Resend on 00:${_resendCountdown.toString().padLeft(2, '0')}",
+                          "Resend on 00:${_resendCountdown.toString().padLeft(2, '0')}".tr,
                           style: TextStyle(color: Colors.grey),
                         ),
                       ),

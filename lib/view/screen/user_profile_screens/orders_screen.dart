@@ -43,7 +43,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
               },
             ),
             title: Text(
-              "Orders",
+              "Orders".tr,
               style: TextStyle(color: Colors.black, fontSize: 16),
             ),
           ),

@@ -47,7 +47,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
         context: context,
         builder: (c) {
           return ErrorDialog(
-            message: "Check your phone number",
+            message: "Check your phone number".tr,
           );
         },
       );
@@ -55,7 +55,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
       showDialog(
         context: context,
         builder: (c) {
-          return LoadingDialog(message: "Wait...");
+          return LoadingDialog(message: "Wait...".tr);
         },
       );
       try{
@@ -95,12 +95,12 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("No Internet Connection"),
-          content: Text("Please check your internet connection."),
+          title: Text("No Internet Connection".tr),
+          content: Text("Please check your internet connection.".tr),
           actions: [
             TextButton(
               onPressed: () async {
-                Navigator.pop(context, 'Cancel'); // Close the dialog
+                Navigator.pop(context, 'Cancel'.tr); // Close the dialog
                 setState(() {
                   isAlerSet = false;
                 });
@@ -113,7 +113,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                   });
                 }
               },
-              child: Text("OK"),
+              child: Text("OK".tr),
             ),
           ],
         );
@@ -149,7 +149,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                     SizedBox(height: 20,),
 
                     CustomTextWidget(
-                    text: "Forgot your Password?",
+                    text: "Forgot your Password?".tr,
                         textColor: Colors.black,
                         fontSize: 18,
                         fontWeight: FontWeight.bold),
@@ -159,7 +159,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                     SizedBox(height: 16,),
 
                     CustomTextWidget(
-                        text: "Enter your Phone number to retrieve your password.",
+                        text: "Enter your Phone number to retrieve your password.".tr,
                         textColor: Color(0xffACB7CA),
                         fontSize: 14,
                         fontWeight: FontWeight.normal),
@@ -240,7 +240,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                           formValidation();
 
                         },
-                        child: Text("Send verification code"),
+                        child: Text("Send verification code".tr),
                         style: ElevatedButton.styleFrom(
                           primary:
                           mainColor, // Set the button color to your desired color

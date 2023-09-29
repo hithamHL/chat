@@ -37,12 +37,12 @@ class _SuccessfulResetPasswordState extends State<SuccessfulResetPassword> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("No Internet Connection"),
-          content: Text("Please check your internet connection."),
+          title: Text("No Internet Connection".tr),
+          content: Text("Please check your internet connection.".tr),
           actions: [
             TextButton(
               onPressed: () async {
-                Navigator.pop(context, 'Cancel'); // Close the dialog
+                Navigator.pop(context, 'Cancel'.tr); // Close the dialog
                 setState(() {
                   isAlerSet = false;
                 });
@@ -55,7 +55,7 @@ class _SuccessfulResetPasswordState extends State<SuccessfulResetPassword> {
                   });
                 }
               },
-              child: Text("OK"),
+              child: Text("OK".tr),
             ),
           ],
         );
@@ -91,7 +91,7 @@ class _SuccessfulResetPasswordState extends State<SuccessfulResetPassword> {
 
                   SizedBox(height: 30,),
                   Text(
-                    "Reset Password Successfully",
+                    "Reset Password Successfully".tr,
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -99,7 +99,7 @@ class _SuccessfulResetPasswordState extends State<SuccessfulResetPassword> {
                   ),
                   SizedBox(height: 12),
                   Text(
-                    "Reset your password to recovery & login to your account ",
+                    "Reset your password to recovery & login to your account ".tr,
                     style: TextStyle(
                       fontSize: 14,
                     ),
@@ -111,7 +111,7 @@ class _SuccessfulResetPasswordState extends State<SuccessfulResetPassword> {
                       onPressed: (){
                           Get.toNamed(Routes.typeLoginScreen);
                       },
-                      child: Text("Log In"),
+                      child: Text("Log In".tr),
                     ),
                   ),
                   Expanded(

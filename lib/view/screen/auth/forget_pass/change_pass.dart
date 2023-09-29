@@ -50,7 +50,7 @@ class _ChangePasswordState extends State<ChangePassword> {
     context: context,
     builder: (c){
     return ErrorDialog(
-    message: "check your ID Number",
+    message: "check your ID Number".tr,
     );
     });
     }
@@ -59,7 +59,7 @@ class _ChangePasswordState extends State<ChangePassword> {
           context: context,
           builder: (c){
             return ErrorDialog(
-              message: "check your password",
+              message: "check your password".tr,
             );
           });
     }
@@ -68,7 +68,7 @@ class _ChangePasswordState extends State<ChangePassword> {
            context: context,
            builder: (c){
              return ErrorDialog(
-               message: "your password not Confirm",
+               message: "your password not Confirm".tr,
              );
            });
      }
@@ -77,7 +77,7 @@ class _ChangePasswordState extends State<ChangePassword> {
       showDialog(
           context: context,
           builder: (c){
-            return LoadingDialog(message: "wait...");
+            return LoadingDialog(message: "wait...".tr);
           }
       );
      // updatePassword();
@@ -92,7 +92,7 @@ class _ChangePasswordState extends State<ChangePassword> {
 
 
       await user!.updatePassword(con_passwordController.text.trim());
-      await Fluttertoast.showToast(msg: "Password has been updated");
+      await Fluttertoast.showToast(msg: "Password has been updated".tr);
 
 
     hideLoadingDialog(context);
@@ -106,13 +106,13 @@ class _ChangePasswordState extends State<ChangePassword> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("No Internet Connection"),
-          content: Text("Please check your internet connection."),
+          title: Text("No Internet Connection".tr),
+          content: Text("Please check your internet connection.".tr),
           actions: [
             TextButton(
               onPressed: () async {
 
-                Navigator.pop(context,'Cancel'); // Close the dialog
+                Navigator.pop(context,'Cancel'.tr); // Close the dialog
                 setState(() {
                   isAlerSet=false;
                 });
@@ -124,7 +124,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                   });
                 }
               },
-              child: Text("OK"),
+              child: Text("OK".tr),
             ),
           ],
         );
@@ -160,9 +160,9 @@ class _ChangePasswordState extends State<ChangePassword> {
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0,right: 8),
                       child: CustomTextWidget(
-                          text: "Enter Number",
                           textColor: Colors.black,
                           fontSize: 18,
+                          text: "Enter Number".tr,
                           fontWeight: FontWeight.bold),
                     ),
 
@@ -171,7 +171,7 @@ class _ChangePasswordState extends State<ChangePassword> {
 
                     CustomStyledTextField(
                       controller: numbweController,
-                      hintText: "Enter your Number ID",
+                      hintText: "Enter your Number ID".tr,
                       prefixSvgPath: "images/id_number.svg",
                       keyboardType: TextInputType.number,
                     ),
@@ -184,7 +184,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0,right: 8),
                       child: CustomTextWidget(
-                          text: "New Password",
+                          text: "New Password".tr,
                           textColor: Colors.black,
                           fontSize: 18,
                           fontWeight: FontWeight.bold),
@@ -203,7 +203,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                         style: TextStyle(color: Colors.black),
                         obscureText: isclick1!, // Hide the entered password
                         decoration: InputDecoration(
-                          hintText: "Enter your password",
+                          hintText: "Enter your password".tr,
                           hintStyle: TextStyle(color: Color(0xffcacaca)),
                           prefixIcon: Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -235,7 +235,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0,right: 8),
                       child: CustomTextWidget(
-                          text: "Confirm new Password",
+                          text: "Confirm new Password".tr,
                           textColor: Colors.black,
                           fontSize: 18,
                           fontWeight: FontWeight.bold),
@@ -254,7 +254,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                         style: TextStyle(color: Colors.black),
                         obscureText: isclick2!, // Hide the entered password
                         decoration: InputDecoration(
-                          hintText: "Enter your password Again",
+                          hintText: "Enter your password Again".tr,
                           hintStyle: TextStyle(color: Color(0xffcacaca)),
                           prefixIcon: Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -295,7 +295,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                           formValidation();
                         },
                         child: Text(
-                            "Confirm"
+                            "Confirm".tr
                         ),
                         style: ElevatedButton.styleFrom(
 

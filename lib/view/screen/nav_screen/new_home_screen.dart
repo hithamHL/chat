@@ -88,7 +88,7 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
                 height: 5,
               ),
               CustomTextWidget(
-                  text: "Great For Life .",
+                  text: "Great For Life .".tr,
                   textColor: Colors.black,
                   fontSize: 22,
                   fontWeight: FontWeight.bold),
@@ -102,7 +102,7 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  "Our pharmacy application offers a range of amazing features. Speed ​​of delivery is one of the most important of these features, as we are committed to delivering medicines and products to your doorstep as quickly as possible. We understand how important time is to our customers and always strive to ensure a fast and efficient delivery service.",
+                  "Our pharmacy application offers a range of amazing features. Speed ​​of delivery is one of the most important of these features, as we are committed to delivering medicines and products to your doorstep as quickly as possible. We understand how important time is to our customers and always strive to ensure a fast and efficient delivery service.".tr,
                   style: TextStyle(fontSize: 18),
                   textAlign: TextAlign.start,
                 ),
