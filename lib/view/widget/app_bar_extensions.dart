@@ -1,18 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import '../../utils/theme.dart';
 
+extension CustomAppBarExtensions on AppBar {
+  AppBar addCustomActionButton({
+    Widget? icon,
+    VoidCallback? onPressed,
+    required String title,
+    bool isVisible = false,
+  }) {
 
-class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-
-   final AppBar appBar;
-   final String barTitle;
-   CustomAppBar({Key? key, required  this.barTitle,required this.appBar}) : super(key: key);
-
-
-  @override
-  Widget build(BuildContext context) {
     return AppBar(
+      actions: isVisible == true && icon != null && onPressed != null? [
+        IconButton(
+          icon: icon,
+          onPressed: onPressed,
+        ),
+        ...?this.actions,
+      ]: [],
       backgroundColor: mainColor2,
       elevation: 0,
       leading: IconButton(
@@ -26,13 +32,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         },
       ),
       title: Text(
-        barTitle.tr,
+        title.tr,
         style: TextStyle(color: Colors.black, fontSize: 16),
       ),
     );
   }
-
-  @override
-  // TODO: implement preferredSize
-  Size get preferredSize => new Size.fromHeight(appBar.preferredSize.height);
 }

@@ -41,6 +41,7 @@ import 'package:medicen_app/view/screen/user_profile_screens/setting_screens/del
 import '../logic/bindings/product_binding.dart';
 import '../view/screen/categore_lists/mouth_and_teeth_list.dart';
 import '../view/screen/chat/chat_screen.dart';
+import '../view/screen/medicin_order/add_data_for_medicen.dart';
 import '../view/screen/more__all_screen/usage_policy_screen.dart';
 import '../view/screen/nav_screen/userprofile_screen.dart';
 
@@ -228,6 +229,9 @@ static const splashScreen=Routes.splashScreen;
     GetPage(
         name: Routes.chatScreen,
         page: ()=>ChatScreen()),
+    GetPage(
+        name: Routes.medicenOrder,
+        page: ()=>AddDataForMedicen()),
 
   ];
 }
@@ -275,4 +279,5 @@ class Routes{
   static const notificationScreen='/notificationScreen';
   static const confirmationOrderScreen='/confirmationOrderScreen';
   static const chatScreen='/chatScreen';
+  static const medicenOrder='/AddDataForMedicen';
 }

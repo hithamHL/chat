@@ -1,33 +1,49 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:medicen_app/logic/controllers/message_controller.dart';
+import 'package:medicen_app/model/messages_model.dart';
 import 'package:medicen_app/utils/theme.dart';
+import 'package:medicen_app/view/widget/message_item.dart';
+import '../../../routes/routes.dart';
+import '../../../utils/global.dart';
+import '../../widget/app_bar_extensions.dart';
 
-import '../../widget/custom_app_bar.dart';
+class ChatScreen extends GetView<MessageController> {
+  List<MessagesModel> listMessage = [];
 
-class ChatScreen extends StatefulWidget {
-  const ChatScreen({Key? key}) : super(key: key);
+  final argParameter = Get.parameters;
 
-  @override
-  State<ChatScreen> createState() => _ChatScreenState();
-}
-
-class _ChatScreenState extends State<ChatScreen> {
-  File? imageFile;
   bool isLoading = false;
   bool isShowSticker = false;
+
+  File? imageFile;
   String imageUrl = "";
+
+  final ScrollController listScrollController = ScrollController();
+  final TextEditingController textEditingController = TextEditingController();
+
+  final isDoctor = sharedPreferences!.getString("userType");
 
   @override
   Widget build(BuildContext context) {
+    print("##############$isDoctor");
+    print("##############${Get.parameters["chatUid"]}");
+
+    // listScrollController.addListener(_scrollListener);
     return Scaffold(
-      appBar: CustomAppBar(
-        barTitle: "Message",
-        appBar: AppBar(),
-      ),
+      appBar: AppBar().addCustomActionButton(
+          icon: Icon(Icons.add, color: Colors.black),
+          onPressed: () {
+            Get.toNamed(Routes.medicenOrder,arguments: "user");
+          },
+          title: "Message",
+          isVisible: isDoctor == "doctor" ? true : false),
       body: SafeArea(
         child: Stack(
           children: <Widget>[
@@ -48,15 +64,16 @@ class _ChatScreenState extends State<ChatScreen> {
             // buildLoading()
           ],
         ),
-
       ),
-
     );
   }
 
+  ///functions//////////////////////////////////////////////////////////////////
+
   Future getImage() async {
     ImagePicker imagePicker = ImagePicker();
-    XFile? pickedFile = await imagePicker.pickImage(source: ImageSource.gallery)
+    XFile? pickedFile = await imagePicker
+        .pickImage(source: ImageSource.gallery)
         .catchError((err) {
       Fluttertoast.showToast(msg: err.toString());
       return null;
@@ -64,42 +81,46 @@ class _ChatScreenState extends State<ChatScreen> {
     if (pickedFile != null) {
       imageFile = File(pickedFile.path);
       if (imageFile != null) {
-        setState(() {
-          isLoading = true;
-        });
+        isLoading = true;
+
         uploadFile();
       }
     }
   }
 
   Future uploadFile() async {
-    // String fileName = DateTime.now().millisecondsSinceEpoch.toString();
-    // UploadTask uploadTask = chatProvider.uploadFile(imageFile!, fileName);
-    // try {
-    //   TaskSnapshot snapshot = await uploadTask;
-    //   imageUrl = await snapshot.ref.getDownloadURL();
-    //   setState(() {
-    //     isLoading = false;
-    //     onSendMessage(imageUrl, TypeMessage.image);
-    //   });
-    // } on FirebaseException catch (e) {
-    //   setState(() {
-    //     isLoading = false;
-    //   });
-    //   Fluttertoast.showToast(msg: e.message ?? e.toString());
-    // }
+    String fileName = DateTime.now().millisecondsSinceEpoch.toString();
+    UploadTask uploadTask =
+        await MessageController.uploadFile(imageFile!, fileName);
+    try {
+      TaskSnapshot snapshot = await uploadTask;
+      imageUrl = await snapshot.ref.getDownloadURL();
+
+      isLoading = false;
+      onSendMessage("", "image", imageUrl);
+    } on FirebaseException catch (e) {
+      isLoading = false;
+
+      Fluttertoast.showToast(msg: e.message ?? e.toString());
+    }
   }
 
-  void onSendMessage(String content, int type) {
-    // if (content.trim().isNotEmpty) {
-    //   textEditingController.clear();
-    //   chatProvider.sendMessage(content, type, groupChatId, currentUserId, widget.arguments.peerId);
-    //   if (listScrollController.hasClients) {
-    //     listScrollController.animateTo(0, duration: Duration(milliseconds: 300), curve: Curves.easeOut);
-    //   }
-    // } else {
-    //   Fluttertoast.showToast(msg: 'Nothing to send', backgroundColor: ColorConstants.greyColor);
-    // }
+  void onSendMessage(String content, String type, String messageImage) async {
+    if (content.trim().isNotEmpty || messageImage.trim().isNotEmpty) {
+      textEditingController.clear();
+      final userUid = sharedPreferences!.getString("uid");
+      await MessageController.sendMessage(
+          MessagesModel(argParameter[0], userUid, type, false, content,
+              messageImage, false, Timestamp.now()),
+          argParameter[0]!);
+      if (listScrollController.hasClients) {
+        listScrollController.animateTo(  listScrollController.position.maxScrollExtent,
+            duration: Duration(milliseconds: 300), curve: Curves.easeOut);
+      }
+    } else {
+      Fluttertoast.showToast(
+          msg: 'Nothing to send', backgroundColor: Colors.redAccent);
+    }
   }
 
   Widget buildInput() {
@@ -107,27 +128,23 @@ class _ChatScreenState extends State<ChatScreen> {
       margin: EdgeInsets.only(bottom: 10),
       width: double.infinity,
       height: 50,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Color(0x80c7c7c7),
-
-
-        borderRadius: BorderRadius.all(Radius.circular(30)),),
-
+        borderRadius: BorderRadius.all(Radius.circular(30)),
+      ),
       child: Row(
         children: <Widget>[
           // Button send image
           Material(
+            color: Colors.transparent,
             child: Container(
-              margin: EdgeInsets.symmetric(horizontal: 1),
+              margin: const EdgeInsets.symmetric(horizontal: 1),
               child: IconButton(
-                icon: Image.asset('images/upload_img/png'),
+                icon: Image.asset('images/upload_im.png'),
                 onPressed: getImage,
-
               ),
             ),
-            color: Colors.transparent,
           ),
-
 
           // Edit text
           Flexible(
@@ -137,8 +154,8 @@ class _ChatScreenState extends State<ChatScreen> {
                   // onSendMessage(textEditingController.text, TypeMessage.text);
                 },
                 // style: TextStyle(color: ColorConstants.primaryColor, fontSize: 15),
-                // controller: textEditingController,
-                decoration: InputDecoration.collapsed(
+                controller: textEditingController,
+                decoration: const InputDecoration.collapsed(
                   hintText: 'writing..',
                   hintStyle: TextStyle(color: Colors.grey),
                 ),
@@ -150,60 +167,68 @@ class _ChatScreenState extends State<ChatScreen> {
 
           // Button send message
           Material(
+            color: Colors.transparent,
             child: Container(
               margin: EdgeInsets.symmetric(horizontal: 8),
               child: IconButton(
                 icon: Icon(Icons.send),
-                onPressed: () => {},
-                //onSendMessage(textEditingController.text, TypeMessage.text),
+                onPressed: () =>
+                    onSendMessage(textEditingController.text, "text", ""),
                 color: mainColor,
               ),
             ),
-            color: Colors.transparent,
           ),
         ],
       ),
-
-
     );
   }
 
   Widget buildListMessage() {
-    return Flexible(
-      child: Container(),
-      // child: groupChatId.isNotEmpty
-      //     ? StreamBuilder<QuerySnapshot>(
-      //     stream: chatProvider.getChatMessage(groupChatId, _limit),
-      //     builder: (BuildContext context,
-      //         AsyncSnapshot<QuerySnapshot> snapshot) {
-      //       if (snapshot.hasData) {
-      //         listMessages = snapshot.data!.docs;
-      //         if (listMessages.isNotEmpty) {
-      //           return ListView.builder(
-      //               padding: const EdgeInsets.all(10),
-      //               itemCount: snapshot.data?.docs.length,
-      //               reverse: true,
-      //               controller: scrollController,
-      //               itemBuilder: (context, index) =>
-      //                   buildItem(index, snapshot.data?.docs[index]));
-      //         } else {
-      //           return const Center(
-      //             child: Text('No messages...'),
-      //           );
-      //         }
-      //       } else {
-      //         return const Center(
-      //           child: CircularProgressIndicator(
-      //             color: mainColor,
-      //           ),
-      //         );
-      //       }
-      //     })
-      //     : const Center(
-      //   child: CircularProgressIndicator(
-      //     color: mainColor,
-      //   ),
-      // ),
+    print("##############${Get.parameters["chatUid"]}");
+    return GetX<MessageController>(
+      init: Get.put<MessageController>(MessageController(argParameter)),
+      builder: (MessageController messageController) {
+        return Flexible(
+          child: Container(
+              child: ListView.builder(
+                  padding: const EdgeInsets.all(10),
+                  itemCount: messageController.chats.length,
+                  reverse: false,
+                  controller: listScrollController,
+                  itemBuilder: (context, index) {
+                    MessagesModel messagesModel =
+                        messageController.chats[index];
+                    listMessage.addAll(messageController.chats);
+                    return MessageItem(
+                        messageContent: messagesModel.messageType == "text"
+                            ? messagesModel.messageText
+                            : messagesModel.messageImage,
+                        messageType: messagesModel.messageType,
+                        userUID: messagesModel.senderUid,
+                        userAvatar: "",
+                        isLiked: messagesModel.liked,
+                        onPressedLiked: () {
+                          if (messagesModel.liked!) {
+                            // senderLiked=true;
+                          } else {
+                            // senderLiked=false;
+                          }
+                        });
+                  })),
+        );
+      },
     );
   }
+
+// _scrollListener() {
+//   if (!listScrollController.hasClients) return;
+//   if (listScrollController.offset >=
+//       listScrollController.position.maxScrollExtent &&
+//       !listScrollController.position.outOfRange &&
+//       _limit <= listMessage.length) {
+//
+//       _limit += _limitIncrement;
+//
+//   }
+// }
 }

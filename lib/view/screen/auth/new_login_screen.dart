@@ -153,9 +153,11 @@ class _NewLoginScreenState extends State<NewLoginScreen> {
           await sharedPreferences!.setString("name", snapshot.data()!["f_name"]);
           await sharedPreferences!.setString("photoUrl", snapshot.data()!["photoUrl"]);
           await sharedPreferences!.setString("password", snapshot.data()!["password"]);
+          await sharedPreferences!.setString("userType", snapshot.data()!["type"]);
        //   await sharedPreferences!.setString("token", snapshot.data()!["token"]);
           await sharedPreferences!.setBool("doctor", true);
           Navigator.pop(context);
+
           Navigator.pushReplacement(context, MaterialPageRoute(builder: (c)=>MainScreen()));
 
         }else if(idController.text.length==9&&argumentValue==true){
@@ -165,6 +167,7 @@ class _NewLoginScreenState extends State<NewLoginScreen> {
           await sharedPreferences!.setString("photoUrl", snapshot.data()!["photoUrl"]);
           await sharedPreferences!.setString("password", snapshot.data()!["password"]);
           await sharedPreferences!.setString("token", snapshot.data()!["token"]);
+          await sharedPreferences!.setString("userType", snapshot.data()!["type"]);
           Navigator.pop(context);
           Navigator.pushReplacement(context, MaterialPageRoute(builder: (c)=>MainScreen()));
 
@@ -278,10 +281,7 @@ class _NewLoginScreenState extends State<NewLoginScreen> {
                 padding: const EdgeInsets.only(top: 30.0),
                 child: Container(
                   width: double.infinity,
-
-
-                  
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     borderRadius: BorderRadius.only(topLeft:Radius.circular(20),topRight: Radius.circular(20),),
                     color: Colors.white,
 
