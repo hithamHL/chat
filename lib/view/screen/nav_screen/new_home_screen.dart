@@ -34,54 +34,60 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   CustomTextWidget(
                       text: "Good For You".tr,
                       textColor: Colors.black,
                       fontSize: 22,
                       fontWeight: FontWeight.bold),
-                  Icon(
-                    Icons.favorite,
-                    color: mainColor,
-                  ),
-                  CustomTextWidget(
-                      text: ".",
-                      textColor: Colors.black,
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold),
-                  SizedBox(
-                    width: 175,
-                  ),
-                  InkWell(
-                    onTap: (){
-                      Get.toNamed(Routes.notificationScreen);
+                  Row(
+                    children:[
+                      Icon(
+                        Icons.favorite,
+                        color: mainColor,
+                      ),
+                      CustomTextWidget(
+                          text: ".",
+                          textColor: Colors.black,
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold),
+                      // SizedBox(
+                      //   width: 175,
+                      // ),
+                      InkWell(
+                        onTap: (){
+                          Get.toNamed(Routes.notificationScreen);
 
-                    },
-                    child: Stack(
-                      children: <Widget>[
-                        Icon(CupertinoIcons.bell_fill,color: Colors.grey,size: 25,),
+                        },
+                        child: Stack(
+                          children: <Widget>[
+                            Icon(CupertinoIcons.bell_fill,color: Colors.grey,size: 25,),
 
-                        Positioned(
-                          right: 0,
-                          top: 0,
-                          child: Container(
-                            padding: EdgeInsets.all(4),
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: mainColor,
-                            ),
-                            child: Text(
-                              '5', // Replace with your desired number
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 12,
+                            Positioned(
+                              right: 0,
+                              top: 0,
+                              child: Container(
+                                padding: EdgeInsets.all(4),
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: mainColor,
+                                ),
+                                child: Text(
+                                  '5', // Replace with your desired number
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 12,
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
+                          ],
                         ),
-                      ],
-                    ),
+                      )
+                    ]
                   )
+
                 ],
               ),
               SizedBox(

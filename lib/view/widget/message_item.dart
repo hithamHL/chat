@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:medicen_app/utils/global.dart';
 import 'package:medicen_app/utils/theme.dart';
 
@@ -30,7 +31,8 @@ class MessageItem extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: CircleAvatar(child: Image.network(userAvatar!),radius: 16,),
+              child: CircleAvatar(radius: 18,child:userAvatar !="" ? Image.network(userAvatar!):
+              SvgPicture.asset("images/user.svg"),),
             ),
             Container(
               width: MediaQuery.sizeOf(context).width * 0.75,
@@ -39,7 +41,7 @@ class MessageItem extends StatelessWidget {
                 color: mainColor,
                 borderRadius: BorderRadius.all(Radius.circular(30)),) :
               const BoxDecoration(
-                color: Color(0x80c7c7c7),
+                color: Color(0x804D4D4D),
                 borderRadius: BorderRadius.all(Radius.circular(8)),),
               child:Padding(
                 padding: const EdgeInsets.all(8),
@@ -47,21 +49,30 @@ class MessageItem extends StatelessWidget {
                   children: [
                     messageType == "text" ?
                     Text(messageContent!,textAlign: TextAlign.start,
+
                     style: TextStyle(color: Colors.white),)
                         :
-                    GestureDetector(onTap: (){},child: Image.network(messageContent!)),
+                    GestureDetector(onTap: (){},
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Image.network(messageContent!
+                      ,fit: BoxFit.cover,
+                      width: MediaQuery.of(context).size.width-100
+                      ,height: 200,
+                    ),
+                        )),
 
 
-                   SizedBox(
-                     height: 25,
-                     child: Align(
-                            alignment: uid==userUID ?  Alignment.bottomLeft:Alignment.bottomRight,
-                            child: IconButton(
-                                onPressed:() => onPressedLiked,
-                                icon: isLiked == true ?
-                                const Icon(Icons.favorite,color: Colors.green,) :
-                                const Icon(Icons.favorite,color: Colors.white,))),
-                   ),
+                   // SizedBox(
+                   //   height: 25,
+                   //   child: Align(
+                   //          alignment: uid==userUID ?  Alignment.bottomLeft:Alignment.bottomRight,
+                   //          child: IconButton(
+                   //              onPressed:() => onPressedLiked,
+                   //              icon: isLiked == true ?
+                   //              const Icon(Icons.favorite,color: Colors.green,) :
+                   //              const Icon(Icons.favorite,color: Colors.white,))),
+                   // ),
 
                   ],
                 )

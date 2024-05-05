@@ -29,13 +29,21 @@ class DoctorChatScreen extends GetView<ChatController> {
               itemBuilder: (BuildContext context, int index) {
                 final _chats = allChats[index];
                 print("all listtt ${allChats.length}");
+                String? doctorUID=ConstantsName.chatUserUId(_chats);
+                var parameters = <String, String>{
+                  "chatUid": _chats.chatUID!,
+                  "imageOne": _chats.memberOneAvatar!,
+                  "imageTwo": _chats.memberTwoAvatar!,
+                  "doctorUID": doctorUID!,
+                  "userUID":   (doctorUID ==_chats.memberOneUid ? _chats.memberTwoUid : _chats.memberOneUid)!
+                };
                 return ChatCardItem(
                     userName: ConstantsName.chatUserName(_chats)!,
                     lastMessage: _chats.lastMessage!,
                     chatStatus: _chats.readStatus!,
                     goToChat: () {
                       print("##########>>${_chats.chatUID}");
-                      return Get.toNamed(Routes.chatScreen, arguments: _chats.chatUID);
+                      return Get.toNamed(Routes.chatScreen, parameters: parameters);
                     });
               }),
         ],

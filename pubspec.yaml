@@ -56,6 +56,9 @@ dependencies:
   art_sweetalert: ^0.0.5
   fluttertoast: ^8.2.2
   url_launcher: ^6.1.14
+  firebase_messaging: ^14.0.0
+  flutter_local_notifications: ^9.7.0
+
 
 
 dev_dependencies:

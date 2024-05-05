@@ -3,11 +3,13 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:medicen_app/logic/controllers/message_controller.dart';
 import 'package:medicen_app/model/messages_model.dart';
+import 'package:medicen_app/utils/constants.dart';
 import 'package:medicen_app/utils/theme.dart';
 import 'package:medicen_app/view/widget/message_item.dart';
 import '../../../routes/routes.dart';
@@ -40,7 +42,11 @@ class ChatScreen extends GetView<MessageController> {
       appBar: AppBar().addCustomActionButton(
           icon: Icon(Icons.add, color: Colors.black),
           onPressed: () {
-            Get.toNamed(Routes.medicenOrder,arguments: "user");
+            var parameters = <String, String>{
+              "doctorUID": argParameter["doctorUID"]!,
+              "userUID":   argParameter["userUID"]!
+            };
+            Get.toNamed(Routes.medicenOrder,parameters: parameters);
           },
           title: "Message",
           isVisible: isDoctor == "doctor" ? true : false),
@@ -110,9 +116,9 @@ class ChatScreen extends GetView<MessageController> {
       textEditingController.clear();
       final userUid = sharedPreferences!.getString("uid");
       await MessageController.sendMessage(
-          MessagesModel(argParameter[0], userUid, type, false, content,
+          MessagesModel(argParameter["chatUid"], userUid, type, false, content,
               messageImage, false, Timestamp.now()),
-          argParameter[0]!);
+          argParameter["chatUid"]!);
       if (listScrollController.hasClients) {
         listScrollController.animateTo(  listScrollController.position.maxScrollExtent,
             duration: Duration(milliseconds: 300), curve: Curves.easeOut);
@@ -186,7 +192,7 @@ class ChatScreen extends GetView<MessageController> {
   Widget buildListMessage() {
     print("##############${Get.parameters["chatUid"]}");
     return GetX<MessageController>(
-      init: Get.put<MessageController>(MessageController(argParameter)),
+      init: Get.put<MessageController>(MessageController(argParameter["chatUid"])),
       builder: (MessageController messageController) {
         return Flexible(
           child: Container(
@@ -205,7 +211,7 @@ class ChatScreen extends GetView<MessageController> {
                             : messagesModel.messageImage,
                         messageType: messagesModel.messageType,
                         userUID: messagesModel.senderUid,
-                        userAvatar: "",
+                        userAvatar: argParameter["imageOne"],
                         isLiked: messagesModel.liked,
                         onPressedLiked: () {
                           if (messagesModel.liked!) {
@@ -231,4 +237,28 @@ class ChatScreen extends GetView<MessageController> {
 //
 //   }
 // }
+
+
+  Future<void> updateFav() async {
+    try {
+
+      DocumentReference documentReference = FirebaseFirestore.instance.
+      collection(ConstantsName.chatDoc)
+          .doc(argParameter["chatUid"])
+      .collection(ConstantsName.messageDoc)
+      .doc();
+
+      // Update specific field
+      await documentReference.update({
+        'field1': 'new value',
+        'field2': 'new value',
+        // Add more fields to update as needed
+      });
+
+      print('Document updated successfully');
+    } catch (error) {
+      print('Error updating document: $error');
+    }
+  }
+
 }

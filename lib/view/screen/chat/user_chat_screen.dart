@@ -25,7 +25,7 @@ class UserChatScreen extends GetView<ChatController> {
         SearchBarWidget(
             onSubmit: (val) => dataController.filterItems(val),),
         Obx(
-          () => dataController.chats.isEmpty && dataController.allDoctors.isEmpty
+          () =>  dataController.allDoctors.isEmpty
               ? const Expanded(
                 child: Center(
                     child: EmptyWidget(
@@ -35,7 +35,7 @@ class UserChatScreen extends GetView<ChatController> {
               )
               : ListView.builder(
                   shrinkWrap: true,
-                  itemCount: dataController.chats.length + dataController.allDoctors.length,
+                  itemCount: dataController.allDoctors.length,
                   itemBuilder: (BuildContext context, int index) {
 
                     if (index < dataController.chats.length) {
@@ -52,7 +52,7 @@ class UserChatScreen extends GetView<ChatController> {
                               parameters: parameters)
                       );
                     } else {
-                      final _doctor = dataController.allDoctors[index - dataController.chats.length];
+                      final _doctor = dataController.allDoctors[index];
                       return ChatCardItem(
                           userName: _doctor.full_name!,
                           lastMessage: "",

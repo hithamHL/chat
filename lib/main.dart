@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -38,5 +39,25 @@ class MyApp extends StatelessWidget {
       initialRoute: Routes.splashScreen,
       getPages: AppRoutes.routes,
     );
+  }
+
+  void setupFirebaseMessaging() {
+    firebaseMessaging.requestPermission(
+      alert: true,
+      announcement: false,
+      badge: true,
+      carPlay: false,
+      criticalAlert: false,
+      provisional: false,
+      sound: true,
+    );
+
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      // Handle incoming messages when the app is in the foreground
+      print('Received message: ${message.notification?.body}');
+    });
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+      // Handle notification taps here
+    });
   }
 }

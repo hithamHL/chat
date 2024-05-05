@@ -23,6 +23,7 @@ class ChatController extends GetxController{
   @override
   void onInit() {
     super.onInit();
+
     chatList.bindStream(chatListStream());
     doctorsList.bindStream(doctorList());
   }
@@ -42,6 +43,7 @@ class ChatController extends GetxController{
           chats.add(chatModel);
         }
         }
+      chatList.refresh();
       return chats;
     });
   }
@@ -56,6 +58,7 @@ class ChatController extends GetxController{
         final doctorModel = UserModel.fromDocumentSnapshot(documentSnapshot: doctor);
         docList.add(doctorModel);
       }
+      doctorsList.refresh();
       return docList;
     });
   }

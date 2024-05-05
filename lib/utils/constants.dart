@@ -7,14 +7,8 @@ class ConstantsName{
  static const  String messageDoc="messages";
  static const  String usersDoc="users";
  static const  String doctor="doctor";
-
-
-
-
-
-
-
-
+ static const  String orderDoc="order";
+ static const  String notificationDoc="notification";
 
 
  static String? chatUserName(ChatModel chatModel){

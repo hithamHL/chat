@@ -1,12 +1,18 @@
 import 'dart:async';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:medicen_app/model/users_model.dart';
 import 'package:medicen_app/view/widget/error_dialog.dart';
 
+import '../../../model/order_model.dart';
+import '../../../utils/constants.dart';
+import '../../../utils/global.dart';
 import '../../../utils/theme.dart';
 import '../../widget/custom_text.dart';
 import '../../widget/custome_styled_text_filde.dart';
@@ -36,6 +42,7 @@ class _AddDataForMedicenState extends State<AddDataForMedicen> {
   late StreamSubscription subscription;
   var isDeviceConnected = false;
   bool isAlerSet = false;
+  final argParameter = Get.parameters;
   Future<ConnectivityResult> getConnectivityStatus() async {
     Connectivity connectivity = Connectivity();
     ConnectivityResult result = await connectivity.checkConnectivity();
@@ -86,7 +93,8 @@ class _AddDataForMedicenState extends State<AddDataForMedicen> {
               message: "check your First name".tr,
             );
           });
-    }else if(l_nameController.text.isEmpty||l_nameController.text.length<3){
+    }
+    else if(l_nameController.text.isEmpty||l_nameController.text.length<3){
       showDialog(
           context: context,
           builder: (c){
@@ -106,7 +114,6 @@ class _AddDataForMedicenState extends State<AddDataForMedicen> {
           });
 
     }
-
     else if(nameMedicineController.text.isEmpty||nameMedicineController.text.length<3){
       showDialog(
           context: context,
@@ -153,10 +160,15 @@ class _AddDataForMedicenState extends State<AddDataForMedicen> {
           });
     }
     else{
+      print(">>>>>>>>>> add");
+      addOrder();
       showDialog(
           context: context,
           builder: (c){
+
+           print(">>>>>>>>>> add");
             return LoadingDialog(message: "wait...".tr);
+
           }
       );
       // loginNow();
@@ -170,8 +182,22 @@ class _AddDataForMedicenState extends State<AddDataForMedicen> {
   @override
   void initState() {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: Color(0xffFFFAEB),
-    ));
+      statusBarColor: Color(0xffFFFAEB),));
+
+    _getUserData().then((DocumentSnapshot document) {
+      if (document.exists) {
+        // Handle the data here
+        print(document.data());
+        var data = document.data() as Map;
+        f_nameController.text=data['f_name'];
+        l_nameController.text=data['l_name'];
+        idController.text=data['number'];
+      } else {
+        print('Document does not exist');
+      }
+    }).catchError((error) {
+      print('Error fetching document: $error');
+    });
     super.initState();
   }
 
@@ -462,5 +488,38 @@ class _AddDataForMedicenState extends State<AddDataForMedicen> {
         ),
       ),
     );
+  }
+
+  Future addOrder() async {
+        DocumentReference docRef =FirebaseFirestore.instance.collection(ConstantsName.orderDoc).doc();
+        OrderModel orderModel=OrderModel(
+            docRef.id,
+            argParameter["userUID"],
+            argParameter["doctorUID"],
+            f_nameController.text,
+            l_nameController.text,
+            idController.text,
+            nameMedicineController.text,
+            numberTakeController.text,
+            priceController.text,
+            countController.text,
+            detailsToTakeController.text);
+
+        await docRef.set(orderModel.toJson()).then((value) {
+          // This code block will execute after the document creation is successful
+          print('Document created successfully!');
+          Fluttertoast.showToast(msg: "order added successfully ;) ", backgroundColor: Colors.green);
+          // Perform any actions you want here
+        }).catchError((error) {
+          // Handle error here
+          print('Error creating document: $error');
+          Fluttertoast.showToast(msg: 'Error: $error', backgroundColor: Colors.red);
+
+        });
+  }
+
+  Future<DocumentSnapshot> _getUserData() async{
+    DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance.collection(ConstantsName.usersDoc).doc(argParameter["userUID"]).get();
+    return documentSnapshot;
   }
 }

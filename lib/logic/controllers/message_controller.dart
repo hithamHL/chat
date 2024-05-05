@@ -11,9 +11,7 @@ import 'package:medicen_app/utils/global.dart';
 
 enum MessageType {text, image}
 
-
 class MessageController extends GetxController{
-
 
   static Rx<List<MessagesModel>> chatList = Rx<List<MessagesModel>>([]);
 
@@ -27,7 +25,7 @@ class MessageController extends GetxController{
   @override
   void onInit() {
     super.onInit();
-    print(chatId[0]);
+    print(chatId);
     chatList.bindStream(getChatStream(chatId));
   }
 
@@ -46,7 +44,6 @@ class MessageController extends GetxController{
       }
       return chats;
     });
-
   }
 
  static  sendMessage(MessagesModel messagesModel,String groupChatId) async {
@@ -59,7 +56,6 @@ class MessageController extends GetxController{
 
      chatList.value.add(messagesModel);
      chatList.refresh();
-
 
   }
 
